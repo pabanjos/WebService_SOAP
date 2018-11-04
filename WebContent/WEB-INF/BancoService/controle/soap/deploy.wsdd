@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from BancoService WSDL service -->
+
+  <service name="Banco" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://soap.controle"/>
+      <parameter name="wsdlServiceElement" value="BancoService"/>
+      <parameter name="schemaQualified" value="http://soap.controle"/>
+      <parameter name="wsdlServicePort" value="Banco"/>
+      <parameter name="className" value="controle.soap.Banco"/>
+      <parameter name="wsdlPortType" value="Banco"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://soap.controle" xmlns:retNS="http://soap.controle" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="efetuar" qname="operNS:efetuar" returnQName="retNS:efetuarReturn" returnType="rtns:int" soapAction="">
+        <parameter xmlns:pns="http://soap.controle" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:operacao" type="tns:string"/>
+        <parameter xmlns:pns="http://soap.controle" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:valor" type="tns:int"/>
+        <parameter xmlns:pns="http://soap.controle" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idContaLocal" type="tns:int"/>
+        <parameter xmlns:pns="http://soap.controle" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:saldoLocal" type="tns:int"/>
+        <parameter xmlns:pns="http://soap.controle" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idContaDestino" type="tns:int"/>
+        <parameter xmlns:pns="http://soap.controle" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:saldoDestino" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://soap.controle" name="atualizarSaldo" qname="operNS:atualizarSaldo" soapAction="">
+        <parameter xmlns:pns="http://soap.controle" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:saldo" type="tns:int"/>
+        <parameter xmlns:pns="http://soap.controle" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idConta" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://soap.controle" name="inserir" qname="operNS:inserir" soapAction="">
+        <parameter xmlns:pns="http://soap.controle" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:operacao" type="tns:string"/>
+        <parameter xmlns:pns="http://soap.controle" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:valor" type="tns:int"/>
+        <parameter xmlns:pns="http://soap.controle" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idContaLocal" type="tns:int"/>
+        <parameter xmlns:pns="http://soap.controle" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idContaDestino" type="tns:int"/>
+      </operation>
+      <parameter name="allowedMethods" value="inserir atualizarSaldo efetuar"/>
+
+  </service>
+</deployment>

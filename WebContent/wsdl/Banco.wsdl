@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://soap.controle" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://soap.controle" xmlns:intf="http://soap.controle" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://soap.controle" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="efetuar">
+    <complexType>
+     <sequence>
+      <element name="operacao" type="xsd:string"/>
+      <element name="valor" type="xsd:int"/>
+      <element name="idContaLocal" type="xsd:int"/>
+      <element name="saldoLocal" type="xsd:int"/>
+      <element name="idContaDestino" type="xsd:int"/>
+      <element name="saldoDestino" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="efetuarResponse">
+    <complexType>
+     <sequence>
+      <element name="efetuarReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="atualizarSaldo">
+    <complexType>
+     <sequence>
+      <element name="saldo" type="xsd:int"/>
+      <element name="idConta" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="atualizarSaldoResponse">
+    <complexType/>
+   </element>
+   <element name="inserir">
+    <complexType>
+     <sequence>
+      <element name="operacao" type="xsd:string"/>
+      <element name="valor" type="xsd:int"/>
+      <element name="idContaLocal" type="xsd:int"/>
+      <element name="idContaDestino" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="inserirResponse">
+    <complexType/>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="efetuarRequest">
+
+      <wsdl:part element="impl:efetuar" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="efetuarResponse">
+
+      <wsdl:part element="impl:efetuarResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="atualizarSaldoRequest">
+
+      <wsdl:part element="impl:atualizarSaldo" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="inserirRequest">
+
+      <wsdl:part element="impl:inserir" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="inserirResponse">
+
+      <wsdl:part element="impl:inserirResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="atualizarSaldoResponse">
+
+      <wsdl:part element="impl:atualizarSaldoResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Banco">
+
+      <wsdl:operation name="efetuar">
+
+         <wsdl:input message="impl:efetuarRequest" name="efetuarRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:efetuarResponse" name="efetuarResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="atualizarSaldo">
+
+         <wsdl:input message="impl:atualizarSaldoRequest" name="atualizarSaldoRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:atualizarSaldoResponse" name="atualizarSaldoResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="inserir">
+
+         <wsdl:input message="impl:inserirRequest" name="inserirRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:inserirResponse" name="inserirResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="BancoSoapBinding" type="impl:Banco">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="efetuar">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="efetuarRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="efetuarResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="atualizarSaldo">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="atualizarSaldoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="atualizarSaldoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="inserir">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="inserirRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="inserirResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="BancoService">
+
+      <wsdl:port binding="impl:BancoSoapBinding" name="Banco">
+
+         <wsdlsoap:address location="http://localhost:8080/WebService_SOAP/services/Banco"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
